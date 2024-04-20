@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Invitees</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='app_images/tab-logo.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/registered_invitees.css') }}">
+    
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('home_page') }}" class="logolink"><h1 class="logo">SAM '24</h1></a>
+        <h1>Registered Invitees</h1>
+    </header>
+    <main>
+        <div class="invitees-container">
+            {%  for invitee in invitees %}
+                <div class="invitee">
+                    <p><span class="label">Name:</span><span class="value">{{ invitee.fullname }}</span></p>
+                    <p><span class="label">Phone:</span><span class="value">{{ invitee.phone_address }}</span></p>
+                    <p><span class="label">Email:</span><span class="value">{{ invitee.email }}</span></p>
+                    <p><span class="label">Status:</span><span class="value">{{ invitee.relationship_with_sam24 }}</span></p>
+                    <p><span class="label">Passcode:</span><span class="value">{{ invitee.pass_code }}</span></p>
+                    <p><span class="label">Table No:</span><span class="value">{{ invitee.table_number }}</span></p>
+                    <p><span class="label">Chair No:</span><span class="value">{{ invitee.chair_number }}</span></p>
+                </div>
+            {% endfor %}
+            
+             
+            
+             
+            <!-- Add more invitees as needed -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Wedding Planner <a href="{{ url_for('send_passcode') }}">send passcodes</a></p>
+        
+    </footer>
+</body>
+</html>

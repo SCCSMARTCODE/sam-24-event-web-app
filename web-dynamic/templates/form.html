@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP'24 - form</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='app_images/tab-logo.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/form.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash-message {{ category }}" style="text-align: center; width: 30vw;margin: auto;">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+        <form action="" enctype="multipart/form-data" method="post">
+            <h1><a href="{{ url_for('home_page') }}" class="homelink">SAM '24</a>   -   Registration Form</h1>
+            
+            <div class="form-section">
+                <label for="fullname">FullName:</label>
+                <input type="text" name="fullname" id="fullname" required>
+            </div>
+
+            <div class="form-section">
+                <label for="phone_address">Phone Address</label>
+                <input type="tel" name="phone_address" id="phone_address" required>
+            </div>
+
+            <div class="form-section">
+                <label for="email">Email Address:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="form-section">
+                <label for="status">Relationship to the Celebrant:</label>
+                <select name="status" id="status" required>
+                    <option value="Family">Family</option>
+                    <option value="IBK's MUM Invitees">IBK's MUM Invitees</option>
+                    <option value="Bussy Balo's Invitees">Bussy Balo's Invitees</option>
+                    <option value="Young Balo's Invitees">Young Balo's Invitees</option>
+                    <option value="Seyi's Dad Invitees">Daddy Seyi's Invitees</option>
+                    <option value="F.S.T">F.S.T</option>
+                    <option value="Scc Parents">Scc Parents</option>
+                    <option value="SCC OLD-STUDENTS">SCC OLD-STUDENTS</option>
+                    <option value="Prometheus">Prometheus</option>
+                    <option value="Ministers">Ministers</option>
+                    <option value="Well Wishers">Well Wishers</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label for="profile-pic">Profile Picture:</label>
+                <input type="file" name="profile-pic" id="profile-pic" required>
+            </div>
+
+            <input type="submit" value="Submit Form" class="submit">
+            <!-- <input type="submit" value="Automate Registration" class="submit"> -->
+            <a href="{{ url_for('automate_reg') }}">Automate Registration</a>
+        </form>
+
+
+
+        <form action="" method="post">
+            <h1>Update Info</h1>
+            
+            <div class="form-section">
+                <label for="info">Info:</label>
+                <select name="info" id="info" required>
+                    <option value="table">Table No</option>
+                    <option value="chair">Chair No</option>
+                </select>
+            </div>
+            
+            <div class="form-section">
+                <label for="value">New Value:</label>
+                <input type="value" name="value" id="value" required>
+            </div>
+
+            <div class="form-section">
+                <label for="passcode">Pass Code:</label>
+                <input type="passcode" name="passcode" id="passcode" required>
+            </div>
+
+            <input type="submit" value="Update Info" class="submit">
+            <a href="{{ url_for('arrange_all') }}">Automate Arrangement</a>
+        </form>
+
+        <form action="" method="post">
+            <h1>Update Status</h1>
+            
+            <div class="form-section">
+                <label for="status-info">Select Status:</label>
+                <select name="status-info" id="status-info" required>
+                    <option value="BUSSY BALOW's Invitees">BUSSY BALOW's Invitees</option>
+                    <option value="F.S.T">F.S.T</option>
+                    <option value="Family">Family</option>
+                    <option value="IBK's MUM's Invitees">IBK's MUM's Invitees</option>
+                    <option value="Ministers">Ministers</option>
+                    <option value="SCC Old Students">SCC Old Students</option>
+                    <option value="SCC Parents">SCC Parents</option>
+                    <option value="YOUNG BALOW's Invitees">YOUNG BALOW's Invitees</option>
+                    <option value="SEYI's DAD's Invitees">SEYI's DAD's Invitees</option>
+                    <option value="Prometheus">Prometheus</option>
+                    <option value="Well Wishers">Well Wishers</option>
+                </select>
+            </div>
+            
+            <div class="form-section">
+                <label for="passcode">Pass Code:</label>
+                <input type="passcode" name="passcode" id="passcode" required>
+            </div>
+
+            <input type="submit" value="Update Status" class="submit">
+        </form>
+
+        <form action="" method="post">
+            <h1>Update Table Number</h1>
+            
+            <div class="form-section">
+                <label for="table-status-info">Select Status:</label>
+                <select name="table-status-info" id="table-status-info" required>
+                    <option value="BUSSY BALOW's Invitees">BUSSY BALOW's Invitees</option>
+                    <option value="F.S.T">F.S.T</option>
+                    <option value="Family">Family</option>
+                    <option value="IBK's MUM's Invitees">IBK's MUM's Invitees</option>
+                    <option value="Ministers">Ministers</option>
+                    <option value="SCC Old Students">SCC Old Students</option>
+                    <option value="SCC Parents">SCC Parents</option>
+                    <option value="YOUNG BALOW's Invitees">YOUNG BALOW's Invitees</option>
+                    <option value="SEYI's DAD's Invitees">SEYI's DAD's Invitees</option>
+                    <option value="Prometheus">Prometheus</option>
+                    <option value="Well Wishers">Well Wishers</option>
+                </select>
+            </div>
+            
+            <div class="form-section">
+                <label for="table-no">Table No:</label>
+                <input type="table-no" name="table-no" id="table-no" required>
+            </div>
+
+            <input type="submit" value="Update Table no" class="submit">
+        </form>
+
+        <form action="" method="post">
+            <h1>Delete Invitee</h1>
+            
+            <div class="form-section">
+                <label for="del-passcode">Invitee's Passcode</label>
+                <input type="del-passcode" name="del-passcode" id="del-passcode" required>
+            </div>
+
+            <input type="submit" value="Delete" class="submit">
+        </form>
+
+    </div>
+</body>
+</html>

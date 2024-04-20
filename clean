@@ -1,0 +1,63 @@
+
+
+
+            # for name in full_names:
+            #     if name in profile_pic_name1 and name in profile_pic_name2:
+            #         profile_pic_name = name
+            #         break
+            # if not profile_pic_name:
+            #     for name in full_names:
+            #         if name in profile_pic_name1 and name in profile_pic_name3:
+            #             profile_pic_name = name
+            #             break
+            # if not profile_pic_name:
+            #     for name in full_names:
+            #         if name in profile_pic_name2 and name in profile_pic_name3:
+            #             profile_pic_name = name
+            #             break
+            # if not profile_pic_name:
+            #     gmail_domain = invitee['Gmail Address'].split('@')[0].replace('.', '')
+            #     profile_pic_names = [name for name in os.listdir(profile_pic_dir_path) if gmail_domain.lower() in name.lower()]
+            #
+            #     if profile_pic_names and len(profile_pic_names) == 1:
+            #         profile_pic_name = profile_pic_names[0]
+
+
+
+
+# image = requests.get(invitee['Upload Your Photo for Identification'])
+# if not image:
+#     continue
+# pic_ext = imghdr.what(None, image.content)
+# if pic_ext:
+#     filename = f"{pass_code}.{pic_ext.lower()}".replace("'", "")
+# else:
+#     filename = f"{pass_code}.jpg".replace("'", "")
+# path = f'static/invitees_images/{filename}'
+# with open(path, 'wb') as pic:
+#     pic.write(image.content)
+
+
+
+
+# profile_pic_name1 = [name for name in os.listdir(profile_pic_dir_path) if invitee['Full Name'].split()[0].lower() in name.lower()]
+# profile_pic_name2 = [name for name in os.listdir(profile_pic_dir_path) if invitee['Full Name'].split()[1].lower() in name.lower()]
+
+# profile_pic_name3 = None
+
+# if invitee['Full Name'].split()[2]:
+    # profile_pic_name3 = [name for name in os.listdir(profile_pic_dir_path) if invitee['Full Name'].split()[2].lower() in name.lower()]
+
+# full_names = profile_pic_name1 + profile_pic_name2
+# if profile_pic_name3:
+#     full_names += profile_pic_name3
+            # full_names = list(set(full_names))
+
+
+       # if not profile_pic_name:
+       #     gmail_domain = invitee['Gmail Address'].split('.')[0].replace('.', '')
+       #     profile_pic_names = [name for name in os.listdir(profile_pic_dir_path) if gmail_domain in name.lower()]
+       #
+       #     if profile_pic_names and len(profile_pic_names) == 1:
+       #         profile_pic_name = profile_pic_names[0]
+       #

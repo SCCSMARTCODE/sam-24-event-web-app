@@ -1,0 +1,117 @@
+@media (max-width: 1300px) {
+    /* Styles to apply when the screen width is less than or equal to 768px */
+    body {
+      /* Example styles */
+      display: none; /*Hide the content*/
+    }
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    /* background-image: url(../app_images/IMG-20240412-WA0024.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; */
+    background-color: #2d39da33;
+}
+
+form{
+    background-color: rgba(101, 211, 255, 0.336);
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+    width: 60vw;
+    height: fit-content;
+    margin: auto;
+    box-sizing: border-box;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    padding: .5cm;
+    border-radius: 0px;
+    box-shadow: 0px 0px 2px 2px rgba(138, 138, 138, 0.308);
+}
+
+form h1{
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 2.5rem;
+    font-size: 2rem;
+}
+
+.form-section{
+    margin: 3%;
+    box-shadow: .5px .5px 2px 0px rgba(0, 0, 0, 0.308);
+    background-color: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    /* background-color: aqua; */
+    /* padding: .3cm; */
+}
+
+.form-section label{
+    display: block;
+    background-color: rgb(12, 21, 70);
+    padding: .37cm;
+    text-align: left;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top: 4px solid black;
+    font-family: serif;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: goldenrod;
+}
+
+
+
+.form-section input, .form-section select, .submit{
+    padding: .15cm;
+    display: block;
+    width: 98.5%;
+    font-size: 1.4rem;
+    font-family: cursive;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.submit{
+    background-color: rgb(255, 249, 234);
+    width: 50%;
+    margin: auto;
+    margin-top: 9vh;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.submit:hover{
+    background-color: gold;
+}
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px;
+}
+
+.flash-message.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.flash-message.danger {
+    background-color: #f44336;
+    color: white;
+}
+/* .active-form {
+    display: block;
+} */

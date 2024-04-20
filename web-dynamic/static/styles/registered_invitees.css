@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(2, 2, 49);
+    color: gold;
+    padding: 5px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+header h1{
+    margin: none;
+}
+
+main {
+    /* padding: 20px; */
+}
+
+.invitees-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 76vh;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.invitee {
+    background-color: gold;
+    color: rgb(1, 1, 36);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 25%;
+    height: fit-content;
+    box-shadow: 0 0 3px rgba(134, 134, 134, 0.904);
+}
+
+footer {
+    background-color: rgb(3, 3, 53);
+    color: gold;
+    padding: 1px;
+    text-align: center;
+}
+
+.invitee .label{
+    font-family:fantasy;
+    font-size: 1.1rem;
+    font-weight: 100;
+    margin-right: 10px;
+    color: rgb(2, 3, 59);
+}
+
+.invitee .value{
+    font-size: .9rem;
+    font-weight: 900;
+    font-family: cursive;
+}
+
+.logo{
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 7vh;
+}
+
+.logolink{
+    text-decoration: none;
+    position: absolute;
+    left: 1vw;
+}

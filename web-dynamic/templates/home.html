@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAM '24 - home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='app_images/tab-logo.ico') }}" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+<body class="background-gallery slide-animation" id="backgroundSection">
+
+<nav class="home-nav">
+    <div class="img-cover">
+        <img src="{{ url_for('static', filename='app_images/3d-logo.png') }}" alt="">
+        <h2 class="header-label">Picture Gallery</h2>
+        <div class="nav-func-link">
+          <div class="droper"><h2>Admin Links</h2></div>
+          <ul class="dropdown">
+              <li><a href="{{ url_for('form') }}">Registration-Page</a></li>
+              <li><a href="{{ url_for('verification_search', passcode=0) }}">Verification-Page</a></li>
+              <li><a href="{{ url_for('invitees_stat') }}">Invitee Statistics</a></li>
+              <li><a href="{{ url_for('unregistered_invitees_stat') }}">Unregistered Statistics</a></li>
+          </ul>
+        </div>
+    
+    
+    </div>
+</nav>
+
+ 
+<div class="home-image-container">
+
+  <div class="animated-text-container">
+    <h1 class="animated-text">Stephen Abiola Balogun & Akorede Balogun: A Journey of Love</h1>
+    <img src="{{ url_for('static', filename='app_images/h-tv-pic1.jpg') }}" alt="">
+    <img src="{{ url_for('static', filename='app_images/h-tv-pic4.jpg') }}" alt="" class="h-tv-pic4">
+    <img src="{{ url_for('static', filename='app_images/h-tv-pic3.jpg') }}" alt="">
+  </div>
+
+
+  <div class="event-links">
+    <div class="pre-wedding">
+      <a href="https://drive.google.com/drive/folders/1SSQ_CTn6OE2IkXFlwVu7b2X_aXfSi4gt" class="sampledButton" target="_blank">Pre Wedding</a>
+    </div>
+    <div class="bridal-shower">
+      <a href="https://drive.google.com/drive/folders/1SSQ_CTn6OE2IkXFlwVu7b2X_aXfSi4gt" class="sampledButton" target="_blank">Bridal Shower</a>
+    </div>
+    <div class="engagement">
+      <a href="#" class="sampledButton" target="_blank">Engagement</a>
+    </div>
+    <div class="reception">
+      <a href="#" class="sampledButton" target="_blank">Reception</a>
+    </div>
+    <div class="post-wedding">
+      <a href="#" class="sampledButton" target="_blank">Post Wedding</a>
+    </div>
+    <div class="thanksgiving">
+      <a href="#" class="sampledButton" target="_blank">Thanks Giving</a>
+    </div>
+  </div>
+</div>
+
+<div class="story-container">
+    
+    <div class="story">
+        <div class="text-field">
+          <h3>Forever Begins Here</h3>
+          <h6>WE ARE GETTING MARRIED &#40;:</h6>
+            <p>
+              Once upon a time, in a world where dreams intertwine with reality,
+              two souls found each other amidst a sea of people. 
+              Their hearts danced to the rhythm of love, and with each glance, 
+              they felt the universe conspire in their favor. As they journeyed hand in hand, 
+              they discovered that love was not just a fleeting moment, but an eternal promise.
+                In the warmth of each other's embrace, they knew that their story was just beginning. 
+                With every sunrise and every sunset, they whispered the words 'Forever Begins Here,' 
+                for in each other's arms, they found their forever.
+            </p>
+            <h5 title="Happy Married Life">H-M-L</h5>
+        </div>
+
+        <div class="gallery-container">
+           <div class="slider-wrapper">
+                <div class="slider">
+                  <span><img src="{{ url_for('static', filename='app_images/PW-18.jpg') }}" alt="" id="slide-1"></span>
+                  <span><img src="{{ url_for('static', filename='app_images/PW-27.jpg') }}" alt="" id="slide-2"></span>
+                  <span><img src="{{ url_for('static', filename='app_images/home-background.jpg') }}" alt="" id="slide-3"></span>
+           
+                </div>
+
+                <div class="slider-nav">
+                  <a href="#" class="prev-slider"><i class="fa-solid fa-arrow-left"></i></a>
+                  <a href="#" class="next-slider"><i class="fa-solid fa-arrow-right"></i></a>
+                  <!-- <a href="#slide-3"></a> -->
+                </div>
+                
+              </div>
+        </div>
+
+    </div>
+    
+    <div class="wedding-info-container">
+
+        <div class="wedding_info">
+          <h1>The Wedding Info</h1>
+          <fieldset>
+            <legend>When</legend>
+            <p>May 18, 2035, 7:00 PM</p>
+          </fieldset>
+          <fieldset>
+            <legend>Where</legend>
+            <p>White Chapel, 500 Terry A Francois Blvd, San Francisco, CA 94158, USA</p>
+          </fieldset>
+        </div>
+
+        <div class="appreciation-space"></div>
+
+    </div>
+    
+    
+</div>
+
+
+
+<!-- <div class="container">
+  <img src="images.jpg" alt="Image" class="image" id="myImage">
+  <img src="images.jpg" alt="Image" class="image" id="myImage">
+  <img src="images.jpg" alt="Image" class="image" id="myImage">
+  <img src="images.jpg" alt="Image" class="image" id="myImage">
+  <img src="images.jpg" alt="Image" class="image" id="myImage">
+</div> -->
+
+<script src="{{ url_for('static', filename='script/home.js') }}"></script>
+<script src="https://kit.fontawesome.com/e637a9e731.js" crossorigin="anonymous"></script>
+</body>
+</html>

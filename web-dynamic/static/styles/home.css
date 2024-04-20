@@ -1,0 +1,364 @@
+@media (max-width: 1300px) {
+  /* Styles to apply when the screen width is less than or equal to 768px */
+  body {
+    /* Example styles */
+    display: none; /* Hide the content */
+  }
+}
+ 
+ body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    padding-top: 0;
+    background-image: url(../app_images/home-background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* height: 120vh; */
+    background-attachment: fixed;
+  }
+  
+  .container {
+    position: relative;
+  }
+  
+  .image {
+    max-width: 100%;
+    cursor: pointer;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .popup img {
+    max-width: 90%;
+    max-height: 90%;
+    cursor: pointer;
+  }
+
+
+
+  .home-nav{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    font-family: "Courgette", cursive;
+    font-weight: 700;
+    font-style: normal;
+    box-shadow: 0px 1px 8px rgba(204, 202, 202, 0.521);
+    transition: all 2s ease-in-out;
+  }
+
+  .home-nav:hover{
+    background-color: #ffffff5e;
+  }
+
+  .home-nav img{
+    margin: 0;
+    height: 6vh;
+    border-radius: 5px;
+  } 
+ 
+  .home-image-container{
+    width: 100%;
+    height: 90vh;
+  }
+
+  .event-links{
+    padding-top: 9%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+.event-links a{
+  background-color: none;
+  padding: 10px;
+  border-top: 3px solid white;
+  border-radius: 2px;
+  text-decoration: none;
+  font-family: cursive;
+  font-weight: 900;
+  color: wheat;
+  transition: all 1s ease-in-out;
+}
+
+.event-links a:hover{
+  background-color: rgba(0, 17, 255, 0.445);
+  color: aliceblue;
+  /* border-color: rgb(9, 90, 9); */
+}
+
+.animated-text-container {
+  height:fit-content;
+  opacity: 1;
+  border-top: 5px solid rgb(2, 19, 255);
+  border-radius: 0 0 5px 5px;
+  background-color: white;
+  width: fit-content;
+  padding: 10px;
+  margin: auto;
+  animation: fadeIn 8s ease-in-out forwards;
+}
+ 
+@keyframes fadeIn {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(28vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(8vh);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(0px);
+  }
+}
+.animated-text-container img{
+  padding: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(174, 176, 177, 0.466), -1px -1px 2px rgba(174, 176, 177, 0.466);
+  width: 30vh;
+  height: auto;
+}
+
+.animated-text{
+  text-align: center;
+  font-size: 1.3em;
+  margin-top: 0;
+  padding: 5px;
+  font-family: "Varela Round", sans-serif;
+  font-style: normal;
+}
+
+.story{
+  margin: auto;
+  background-color: rgb(255, 255, 255);
+}
+
+.text-field h3{
+  text-align: center;
+  font-size: 40px;
+  font-family: sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+ 
+.story .text-field{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+}
+
+.story .text-field p{
+  text-indent: 4%;
+  text-align: justify;
+  font-size: larger;
+  font-weight: 100;
+  color: rgb(119, 116, 111);
+  line-height: 30px;
+  width: 70%;
+}
+.text-field h6{
+  margin: 0;
+  color: goldenrod;
+  font-size: 20px;
+  font-family: "Fondamento", cursive;
+  font-weight: 600;
+}
+
+.wedding-info-container{
+  background-color: aliceblue;
+  background-image: url(../app_images/engagement-ring-pictures-fbm85um4j7nbor2r.jpg);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  background-position: center;
+
+}
+
+.text-field h5{
+  color: rgb(255, 255, 255);
+  font-family: cursive;
+  font-size: 140%;
+  border-top: 2px solid rgb(255, 255, 255);
+  box-shadow: 1px 1px 2px rgb(173, 169, 169), -1px 0px 2px rgb(173, 169, 169);
+  padding: 5px;
+  background-color: gold;
+  cursor: pointer;
+}
+
+.wedding_info{
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(233, 238, 241, 0.144);
+}
+
+.wedding_info h1{
+  color: aliceblue;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 5vw;
+}
+
+.wedding_info fieldset{
+  width: 50%;
+  color: aliceblue;
+  border-radius: 5px;
+  margin-bottom: 5vh;
+}
+
+.wedding_info legend{
+  background-color: aliceblue;
+  color: goldenrod;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: 900;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+}
+
+.appreciation-space{
+  height: 30vh;
+  background-color: white;
+}
+
+ 
+.slider-wrapper{
+  position: relative;
+  max-width: 95vw;
+  margin: 0 auto;
+}
+.slider{
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  width: 95vw;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+  border-radius: 0.5rem;
+}
+
+.slider img{
+  max-width: 95vw;
+  object-fit: contain;
+  height: auto;
+  scroll-snap-align: start;
+}
+
+.slider-nav{
+  display: flex;
+  column-gap: 70vw;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.slider-nav a{
+  width: 2.5rem;
+  height: 2.5rem;
+  font-weight: 900;
+  background-color: #ffffff;
+  padding: 5px;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 2.5rem;
+  color: rgb(139, 139, 153);
+  font-size: 40px;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity ease 250ms;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.slider-nav a:hover{
+  opacity: 1;
+}
+.header-label{
+  color: blue;
+  transform: translateX(20px);
+  display: inline;
+}
+
+.nav-func-link{
+  position: relative;
+  float: right;
+  min-width: 20vw;
+  margin-right: 5vw;
+  text-align: center;
+  transition: all 2s ease-in-out;
+}
+
+.nav-func-link .droper{
+    font-size: 15px;
+    
+    padding-top: 1px;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+    border-bottom: 2.7px solid aliceblue;
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+.nav-func-link:hover .dropdown{
+  display: block;
+}
+
+.img-cover{
+  position: relative;
+}
+
+.nav-func-link .dropdown{
+  position: absolute;
+  background-color: rgb(255, 209, 4);
+  padding: 10px;
+  width: 94%;
+  transform: translateY(-20px);
+  display: none;
+}
+
+.nav-func-link .dropdown li{
+  margin: 2px;
+  list-style-type: none;
+
+}
+
+.nav-func-link .dropdown a{
+    color: #ffffff;
+    display: block;
+    padding: 2rem;
+    text-decoration: none;
+  background-color: rgb(6, 20, 104);
+  border-radius: 5px;
+
+
+}
+
+.nav-func-link .dropdown a:hover{
+    text-decoration: underline;
+    background-color: rgb(0, 0, 126);
+}
