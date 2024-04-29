@@ -6,20 +6,57 @@
     <title>Invitees Verification Search</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/search.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='app_images/tab-logo.ico') }}" type="image/x-icon">
+    
 </head>
 <body>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
     <nav>
         <a href="{{ url_for('home_page') }}" class="logolink"><h1 class="logo">SAM '24</h1></a>
         <h1 class="head">Invitees Verification Search Page</h1>
         <small class="default-link"><a href="{{ url_for('verification_search', passcode=0) }}">default page</a></small>
+
+
         <form action="" method="post" class="form">
             <input type="search" name="search" id="" placeholder="Search" required >
             <input type="submit" value="🔍">
         </form>
     </nav>
 
+    {% if invitee.table_name %}
+        <small class="default-link passed"><a href="{{ url_for('pass_invitee', passcode=invitee.pass_code) }}">Verified</a></small>
 
-    {% if invitee != 0 and invitee.fullname %}
+        <div class="attendanceinfo">
+            {% if invitee.attendance %}
+                <button disabled="disabled" style="background-color: rgb(13, 240, 13);"><i class="fa-solid fa-check"></i></button>
+            {% else %}
+                <button disabled="disabled" style="background-color: red;"><i class="fa-solid fa-xmark"></i></button>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if invitee.table_name == "V.I.P" or invitee.table_name == "CORNELLANRE" %}
+
+    <div class="response-container">
+
+        <div class="text-info">
+            <div class="info">
+                <div class="label">Relationship Status</div><div class="value"><h2>{{ invitee.relationship_with_sam24 }}</h2></div>
+            </div>
+            <div class="info">
+                <div class="label">Table Name</div><div class="value"><h2>{{ invitee.table_name }}</h2></div>
+            </div>
+            <div class="info">
+                <div class="label">Seat Number</div><div class="value"><h2>{{ invitee.chair_number }}</h2></div>
+            </div>
+        </div>
+
+        <div class="invitees-pic" style="background-image: url('../static/invitees_images/{{ invitee.profile_pic_file_name }}');"></div>
+    </div>
+
+    {% elif invitee != 0 and invitee.fullname %}
+
         <div class="response-container">
 
             <div class="text-info">
@@ -36,7 +73,7 @@
                     <div class="label">Relationship Status</div><div class="value"><h2>{{ invitee.relationship_with_sam24 }}</h2></div>
                 </div>
                 <div class="info">
-                    <div class="label">Table Number</div><div class="value"><h2>{{ invitee.table_number }}</h2></div>
+                    <div class="label">Table Name</div><div class="value"><h2>{{ invitee.table_name }}</h2></div>
                 </div>
                 <div class="info">
                     <div class="label">Seat Number</div><div class="value"><h2>{{ invitee.chair_number }}</h2></div>
@@ -70,6 +107,15 @@
             </footer>
         </div>
     {% endif %}
-    
+
+    <script src="https://kit.fontawesome.com/e637a9e731.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Simulate page load delay
+        window.onload = function() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        };
+    </script>
+
 </body>
 </html>

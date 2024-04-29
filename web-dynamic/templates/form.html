@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/form.css') }}">
 </head>
 <body>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+
     <div class="form-container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -41,16 +47,20 @@
                 <label for="status">Relationship to the Celebrant:</label>
                 <select name="status" id="status" required>
                     <option value="Family">Family</option>
-                    <option value="IBK's MUM Invitees">IBK's MUM Invitees</option>
-                    <option value="Bussy Balo's Invitees">Bussy Balo's Invitees</option>
-                    <option value="Young Balo's Invitees">Young Balo's Invitees</option>
-                    <option value="Seyi's Dad Invitees">Daddy Seyi's Invitees</option>
+                    <option value="IBK's MUM's Invitees">IBK's MUM Invitees</option>
+                    <option value="BUSSY BALOW's Invitees">Bussy Balo's Invitees</option>
+                    <option value="YOUNG BALOW's Invitees">Young Balo's Invitees</option>
+                    <option value="SEYI's DAD's Invitees">Daddy Seyi's Invitees</option>
                     <option value="F.S.T">F.S.T</option>
-                    <option value="Scc Parents">Scc Parents</option>
-                    <option value="SCC OLD-STUDENTS">SCC OLD-STUDENTS</option>
+                    <option value="SCC Parents">Scc Parents</option>
+                    <option value="SCC Old Students">SCC OLD-STUDENTS</option>
                     <option value="Prometheus">Prometheus</option>
                     <option value="Ministers">Ministers</option>
                     <option value="Well Wishers">Well Wishers</option>
+                    <option value="V.I.P">V.I.P</option>
+                    <option value="CORNELLANRE's Invitees">CORNELLANRE's Invitees</option>
+                    <option value="Media Department">Media Department</option>
+                    <option value="Dj">Dj</option>
                 </select>
             </div>
 
@@ -72,7 +82,7 @@
             <div class="form-section">
                 <label for="info">Info:</label>
                 <select name="info" id="info" required>
-                    <option value="table">Table No</option>
+                    <option value="table">Table Name</option>
                     <option value="chair">Chair No</option>
                 </select>
             </div>
@@ -81,6 +91,28 @@
                 <label for="value">New Value:</label>
                 <input type="value" name="value" id="value" required>
             </div>
+
+<!-- 
+            <div class="form-section">
+                <label for="value">New Table:</label>
+                <select name="value" id="value" required>
+                    <option value="Family">Family</option>
+                    <option value="IBK's MUM">IBK's MUM</option>
+                    <option value="BUSSY BALOW">Bussy Balo</option>
+                    <option value="YOUNG BALOW">Young Balo</option>
+                    <option value="SEYI's DAD">Daddy Seyi</option>
+                    <option value="F.S.T">F.S.T</option>
+                    <option value="SCC Parents">Scc Parents</option>
+                    <option value="SCC Old Students">SCC OLD-STUDENTS</option>
+                    <option value="Prometheus">Prometheus</option>
+                    <option value="Ministers">Ministers</option>
+                    <option value="Well Wishers">Well Wishers</option>
+                    <option value="V.I.P">V.I.P</option>
+                    <option value="CORNELLANRE's Invitees">CORNELLANRE's Invitees</option>
+                </select>
+            </div> -->
+
+
 
             <div class="form-section">
                 <label for="passcode">Pass Code:</label>
@@ -108,6 +140,10 @@
                     <option value="SEYI's DAD's Invitees">SEYI's DAD's Invitees</option>
                     <option value="Prometheus">Prometheus</option>
                     <option value="Well Wishers">Well Wishers</option>
+                    <option value="V.I.P">V.I.P</option>
+                    <option value="CORNELLANRE's Invitees">CORNELLANRE's Invitees</option>
+                    <option value="Media Department">Media Department</option>
+                    <option value="Dj">Dj</option>
                 </select>
             </div>
             
@@ -119,8 +155,8 @@
             <input type="submit" value="Update Status" class="submit">
         </form>
 
-        <form action="" method="post">
-            <h1>Update Table Number</h1>
+        <!-- <form action="" method="post">
+            <h1>Update Table Name</h1>
             
             <div class="form-section">
                 <label for="table-status-info">Select Status:</label>
@@ -136,16 +172,19 @@
                     <option value="SEYI's DAD's Invitees">SEYI's DAD's Invitees</option>
                     <option value="Prometheus">Prometheus</option>
                     <option value="Well Wishers">Well Wishers</option>
+                    <option value="V.I.P">V.I.P</option>
+                    <option value="CORNELLANRE's Invitees">CORNELLANRE's Invitees</option>
                 </select>
             </div>
             
             <div class="form-section">
-                <label for="table-no">Table No:</label>
-                <input type="table-no" name="table-no" id="table-no" required>
+                <label for="table-name">Table Name:</label>
+                <input type="table-name" name="table-name" id="table-name" required>
             </div>
 
-            <input type="submit" value="Update Table no" class="submit">
-        </form>
+            <input type="submit" value="Update Table name" class="submit">
+            <a href="{{ url_for('automate_table_selection') }}">Automate Table Section</a>
+        </form> -->
 
         <form action="" method="post">
             <h1>Delete Invitee</h1>
@@ -159,5 +198,14 @@
         </form>
 
     </div>
+
+    <script>
+        // Simulate page load delay
+        window.onload = function() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        };
+    </script>
 </body>
+
+
 </html>

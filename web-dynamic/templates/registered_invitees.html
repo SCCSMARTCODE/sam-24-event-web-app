@@ -22,8 +22,9 @@
                     <p><span class="label">Email:</span><span class="value">{{ invitee.email }}</span></p>
                     <p><span class="label">Status:</span><span class="value">{{ invitee.relationship_with_sam24 }}</span></p>
                     <p><span class="label">Passcode:</span><span class="value">{{ invitee.pass_code }}</span></p>
-                    <p><span class="label">Table No:</span><span class="value">{{ invitee.table_number }}</span></p>
+                    <p><span class="label">Table Name:</span><span class="value">{{ invitee.table_name }}</span></p>
                     <p><span class="label">Chair No:</span><span class="value">{{ invitee.chair_number }}</span></p>
+                    <p><span class="label">Passcode Sent:</span><span class="value">{{ invitee.gmail_passcode_sent }}</span></p>
                 </div>
             {% endfor %}
             
@@ -34,8 +35,8 @@
         </div>
     </main>
     <footer>
-        <p>&copy; 2024 Wedding Planner <a href="{{ url_for('send_passcode') }}">send passcodes</a></p>
-        
+        <!-- <p>&copy; 2024 Wedding Planner <a href="#">send passcodes {{ total }}</a></p> -->
+        <p>&copy; 2024 Wedding Planner <a href="{{ url_for('send_passcode') }}">send passcodes {{ total }}</a></p>        
     </footer>
 </body>
 </html>

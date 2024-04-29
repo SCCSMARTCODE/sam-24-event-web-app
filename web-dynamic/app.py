@@ -1,4 +1,14 @@
 from os import environ
+"""This should be removed ASAP"""
+environ["DB_PASSWD"] = "sam24_pass_master"
+environ["DB_HOST"] = "localhost"
+environ["DB_USER"] = "sam24_master"
+environ["DB_NAME"] = "sam24_base_db"
+environ["DB_TYPE"] = "db"
+environ['SMP_GMAIL'] = 'sccsmart247@gmail.com'
+environ['SMP_GMAIL_PW'] = 'jemw amml ymty cukm'
+"""This should be removed ASAP"""
+
 from flask import Flask, render_template, url_for, request, redirect, flash
 
 app = Flask(__name__)
@@ -20,17 +30,19 @@ def form():
         from models.engine import storage
 
         if request.form.get('info'):
-            if not request.form.get('value').strip().isdigit():
-                flash('{} is not a digit', 'danger')
-                return redirect(url_for('form'))
+
             data = storage.session().query(Invitees).filter_by(pass_code=request.form.get('passcode').strip()).first()
             if not data:
                 flash(f"{request.form.get('passcode')}, does not exist")
                 return redirect(url_for('form'))
             if request.form.get('info') == 'table':
-                data.table_number = request.form.get('value')
+                data.table_name = request.form.get('value')
             elif request.form.get('info') == 'chair':
+                if not request.form.get('value').strip().isdigit():
+                    flash('{} is not a digit', 'danger')
+                    return redirect(url_for('form'))
                 data.chair_number = request.form.get('value')
+
             storage.session().commit()
             flash('successful update', 'success')
             return redirect(url_for('form'))
@@ -41,19 +53,25 @@ def form():
                 flash(f"{request.form.get('passcode')}, does not exist")
                 return redirect(url_for('form'))
             data.relationship_with_sam24 = request.form.get('status-info')
-            data.chair_number = get_chair_number(request.form.get('status-info'))
+            status = request.form.get('status-info')
+            if "'s Invitees" in status:
+                table_name = status.replace("'s Invitees", "")
+            else:
+                table_name = status
+            data.chair_number = get_chair_number(table_name)
+            data.table_name = table_name
             storage.session().commit()
             flash('successful update', 'success')
             return redirect(url_for('form'))
 
-        elif request.form.get('table-no'):
+        elif request.form.get('table-name'):
             status = request.form.get('table-status-info')
-            value = request.form.get('table-no')
-            if not value.isdigit():
-                flash(f'{value} is not a digit!', 'danger')
-                return redirect(url_for('form'))
+            value = request.form.get('table-name')
+            # if not value.isdigit():
+            #     flash(f'{value} is not a digit!', 'danger')
+            #     return redirect(url_for('form'))
             for invitee in storage.session().query(Invitees).filter_by(relationship_with_sam24=status).all():
-                invitee.table_number = int(request.form.get('table-no'))
+                invitee.table_name = request.form.get('table-name')
             storage.session().commit()
             flash('successful update', 'success')
             return redirect(url_for('form'))
@@ -72,6 +90,11 @@ def form():
             flash('deleted successfully', 'success')
             return redirect(url_for('form'))
 
+        if "'s Invitees" in request.form.get('status'):
+            table_name = request.form.get('status').replace("'s Invitees", "")
+        else:
+            table_name = request.form.get('status')
+
         fullname = request.form.get('fullname').strip()
         email = request.form.get('email').strip()
         phone_address = request.form.get('phone_address').strip()
@@ -82,21 +105,20 @@ def form():
             if fullname == invitee.fullname:
                 flash(f"The Name '{invitee.fullname}' already Exist in the database", 'danger')
                 return redirect(url_for('form'))
-            elif email == invitee.email:
-                flash(f"The Gmail Address '{invitee.email}' already Exist in the database", 'danger')
-                return redirect(url_for('form'))
             elif phone_address == invitee.phone_address:
                 flash(f"The Phone Address '{invitee.phone_address}' already Exist in the database", 'danger')
                 return redirect(url_for('form'))
 
         pass_code = passcode_generator()
+
         new_invite = Invitees(
             fullname=fullname,
             email=email,
             phone_address=phone_address,
             profile_pic_file_name=save_profile_pic(pass_code=pass_code, picture=request.files['profile-pic']),
             pass_code=pass_code,
-            chair_number=get_chair_number(request.form.get('status')),
+            table_name=table_name,
+            chair_number=get_chair_number(table_name),
             relationship_with_sam24=request.form.get('status')
         )
         storage.session().add(new_invite)
@@ -129,8 +151,9 @@ def invitees_stat():
     from models.engine import storage
     from models.invitees import Invitees
 
-    invitees = storage.session().query(Invitees).order_by('relationship_with_sam24', 'chair_number').all()
-    return render_template('registered_invitees.html', invitees=invitees)
+    invitees = storage.session().query(Invitees).order_by('table_name', 'chair_number').all()
+    # invitees = storage.session().query(Invitees).order_by('fullname').all()
+    return render_template('registered_invitees.html', invitees=invitees, total=len(invitees))
 
 
 @app.route('/unregistered_invitee_statistics')
@@ -145,8 +168,6 @@ def unregistered_invitees_stat():
     for data in datas:
         if not storage.session().query(Invitees).filter_by(fullname=data['Full Name'].strip()).first():
             unregistered_invitees.append(data)
-    for x in unregistered_invitees:
-        print(x)
     return render_template('unregistered_invitees.html', invitees=unregistered_invitees)
 
 
@@ -175,11 +196,9 @@ def automate_reg():
             if not profile_pic_name:
                 import re
                 fullname = invitee['Full Name'].lower()
-                print('Gmail domain', fullname)
                 picture_match = 0
                 for pic_name in os.listdir(profile_pic_dir_path):
                     pic_list = re.split(r'[.\-_ ]+', pic_name)
-                    print(pic_list)
                     i = 0
                     for pic in pic_list:
                         if pic.lower() in fullname:
@@ -194,11 +213,9 @@ def automate_reg():
             if not profile_pic_name:
                 import re
                 gmail_domain = invitee['Gmail Address'].split('@')[0].replace('.', '').lower()
-                print('Gmail domain', gmail_domain)
                 picture_match = 0
                 for pic_name in os.listdir(profile_pic_dir_path):
                     pic_list = re.split(r'[.\-_ ]+', pic_name)
-                    print(pic_list)
                     i = 0
                     for pic in pic_list:
                         if pic.lower() in gmail_domain:
@@ -216,6 +233,9 @@ def automate_reg():
             picture_full_path = os.path.join(profile_pic_dir_path, profile_pic_name).replace('\\', '/')
 
             picture = Image.open(picture_full_path)
+            table_name = invitee['Select Your Related Sibling']
+            if not table_name:
+                table_name = invitee["Your Relationship with the Celebrants"]
 
             if invitee["Your Relationship with the Celebrants"] == "Siblings' Invitees":
                 status = invitee['Select Your Related Sibling'] + "'s Invitees"
@@ -228,8 +248,8 @@ def automate_reg():
                 phone_address=invitee['Phone Number'].strip(),
                 profile_pic_file_name=save_profile_pic(pass_code=pass_code, picture=picture),
                 pass_code=pass_code,
-                # table_number=False,
-                chair_number=get_chair_number(status),
+                table_name=table_name,
+                chair_number=get_chair_number(table_name),
                 relationship_with_sam24=status
             )
             storage.session().add(new_invite)
@@ -260,13 +280,13 @@ def arrange_all():
     from models.invitees import Invitees
 
     prev = None
-    for invite in storage.session().query(Invitees).order_by('relationship_with_sam24', 'chair_number').all():
+    for invite in storage.session().query(Invitees).order_by('table_name', 'chair_number').all():
         new = invite
         if prev is None:
             new.chair_number = 1
             prev = new
             continue
-        if new.relationship_with_sam24 == prev.relationship_with_sam24:
+        if new.table_name == prev.table_name:
             new.chair_number = prev.chair_number + 1
             prev = new
             continue
@@ -283,14 +303,41 @@ def send_passcode():
     from models.engine import storage
     from models.invitees import Invitees
 
-    email_subject = "SAM'24 Passcode Notification"
-
-    for invitee in storage.session().query(Invitees).all():
+    for invitee in storage.session().query(Invitees).filter_by(gmail_passcode_sent=False).all():
+        email_subject = f"{invitee.fullname}'s SAM'24 Passcode Notification"
         message = generate_message(invitee.fullname, invitee.pass_code)
 
         send_message(invitee.email, email_subject, message)
+        invitee.gmail_passcode_sent = True
+        storage.session().commit()
 
     return redirect(url_for('invitees_stat'))
+
+
+@app.route('/pass_invitee/<passcode>')
+def pass_invitee(passcode):
+    from models.engine import storage
+    from models.invitees import Invitees
+
+    invitee = storage.session().query(Invitees).filter_by(pass_code=passcode).first()
+    invitee.attendance = True
+    storage.session().commit()
+    return redirect(url_for('verification_search', passcode=passcode))
+
+
+@app.route('/table_selection-automation')
+def automate_table_selection():
+    from models.engine import storage
+    from models.invitees import Invitees
+
+    for invitee in storage.session().query(Invitees).all():
+        status = invitee.relationship_with_sam24
+        if "'s Invitees" in status:
+            invitee.table_name = status.replace("'s Invitees", "")
+        else:
+            invitee.table_name = status
+        storage.session().commit()
+    return redirect(url_for('form'))
 
 
 def passcode_generator():
@@ -307,12 +354,12 @@ def passcode_generator():
     return passcode
 
 
-def get_chair_number(status):
+def get_chair_number(table_name):
     from models.invitees import Invitees
     from models.engine import storage
 
     session = storage.session()
-    last_person = session.query(Invitees).filter_by(relationship_with_sam24=status).order_by(Invitees.chair_number.desc()).first()
+    last_person = session.query(Invitees).filter_by(table_name=table_name).order_by(Invitees.chair_number.desc()).first()
 
     if last_person:
         return last_person.chair_number + 1
@@ -409,11 +456,11 @@ def generate_message(name, passcode):
         <div class="container">
             <h1>SAM'24 Passcode Notification</h1>
             <p>Dear {name},</p>
-            <p>We are excited to invite you to SMP'24! Below is your passcode for registration:</p>
+            <p>We are excited to invite you to SAM'24! Below is your authorization passcode:</p>
             <div class="passcode">{passcode}</div>
             <p>Please ensure to safeguard this passcode as it will grant you access to the event.</p>
             <p>Thank you and we look forward to seeing you at the event!</p>
-            <div class="footer">Best regards,<br> The SMP'24 Team</div>
+            <div class="footer">Best regards,<br> The SAM'24 Tech Team</div>
         </div>
     </body>
     </html>

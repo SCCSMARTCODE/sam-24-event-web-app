@@ -53,3 +53,6 @@ nextSlide.addEventListener('click', (event) => {
   slider.scrollLeft += slider.offsetWidth;
 });
 
+window.onload = function() {
+  document.getElementById('loading-overlay').style.display = 'none';
+};
