@@ -5,3 +5,4 @@ lib64/
 share/
 .idea
 clean
+*.pyc

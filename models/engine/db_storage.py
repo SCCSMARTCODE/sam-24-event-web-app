@@ -18,19 +18,19 @@ class Storage:
 
     def __init__(self):
 
-        DB_PASSWD = getenv("DB_PASSWD", None)
-        DB_HOST = getenv("DB_HOST", None)
-        DB_CHANNEL = "mysql+mysqldb"
-        DB_USER = getenv("DB_USER", None)
-        DB_NAME = getenv("DB_NAME", None)
+        # DB_PASSWD = getenv("DB_PASSWD", None)
+        # DB_HOST = getenv("DB_HOST", None)
+        # DB_CHANNEL = "mysql+mysqldb"
+        # DB_USER = getenv("DB_USER", None)
+        # DB_NAME = getenv("DB_NAME", None)
 
-        # self.__engine = create_engine("{}://{}:{}@{}/{}".format(
+        # self.__engine = create_engine("{}://{}:sam24_pass_master@{}:3306/{}".format(
         #     DB_CHANNEL,
         #     DB_USER,
-        #     DB_PASSWD,
+        #     # DB_PASSWD,
         #     DB_HOST,
         #     DB_NAME
-        # ))
+        # ), echo=True)
         self.__engine = create_engine('sqlite:///sam24_invites.db', echo=True)
 
     def new(self, obj):
